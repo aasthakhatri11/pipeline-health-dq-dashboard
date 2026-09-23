@@ -100,11 +100,13 @@ summary = (
     )
     .reset_index()
 )
-summary["concentration"] = (
-    summary["worst_single_load"] / summary["total_failed"].replace(0, pd.NA)
+summary["concentration"] = pd.to_numeric(
+    summary["worst_single_load"] / summary["total_failed"].replace(0, pd.NA),
+    errors="coerce"
 ).round(3)
-summary["fail_rate"] = (
-    summary["total_failed"] / row_rules.groupby(["RULE_ID", "RULE_NAME"])["ROWS_CHECKED"].sum().values
+summary["fail_rate"] = pd.to_numeric(
+    summary["total_failed"] / row_rules.groupby(["RULE_ID", "RULE_NAME"])["ROWS_CHECKED"].sum().values,
+    errors="coerce"
 ).round(5)
 
 summary = summary.sort_values("total_failed", ascending=False)
