@@ -4,6 +4,8 @@ Capstone Topic #30 - Databricks & Snowflake (Excelr x KIIT). A data-quality "wat
 
 **Live dashboard:** https://pipeline-health-dq-dashboard-g5htxaegzm5kjvukxkgwcq.streamlit.app/
 
+![Dashboard](images/09_live_dashboard_full_page.png)
+
 ## What it does
 
 | Stage | Where | What happens |
@@ -38,6 +40,8 @@ Capstone Topic #30 - Databricks & Snowflake (Excelr x KIIT). A data-quality "wat
 | `streamlit_app.py` | The dashboard. |
 | `requirements.txt` | Dashboard dependencies. |
 | `secrets_template.toml` | Shape of the Streamlit secrets file (no real credentials). |
+| `export/` | The three Gold CSVs loaded into Snowflake (`gold_dq_results`, `gold_freshness`, `gold_load_manifest`). |
+| `images/` | Screenshots of the pipeline run, the Snowflake checks and the live dashboard. |
 
 ## How to run it
 
