@@ -88,7 +88,7 @@ with tab_heat:
     pivot = sub.pivot_table(index=["BUSINESS_DATE", "LOAD_LABEL"], columns="RULE_ID",
                             values="ROWS_FAILED", aggfunc="sum")
     hi = lambda v: "background-color:#f8b4b4;font-weight:600" if pd.notna(v) and v > 0 else "color:#9aa0a6"
-    st.dataframe(color_cells(pivot.style, hi), use_container_width=True)
+    st.dataframe(color_cells(pivot.style, hi), width="stretch")
 with tab_detail:
     only_fail = st.toggle("Show only failing rules", value=True)
     show = sub[sub["RULE_STATUS"] == "fail"] if only_fail else sub
@@ -96,7 +96,7 @@ with tab_detail:
         show[["BUSINESS_DATE", "LOAD_LABEL", "RULE_ID", "RULE_NAME", "RULE_SCOPE",
               "ROWS_CHECKED", "ROWS_FAILED", "FAIL_RATE", "RULE_STATUS"]]
         .sort_values(["BUSINESS_DATE", "ROWS_FAILED"], ascending=[True, False]),
-        use_container_width=True, hide_index=True)
+        width="stretch", hide_index=True)
 st.divider()
 
 # ---------- Question 2 ----------
@@ -107,7 +107,7 @@ for _, r in freshness.iterrows():
     st.write(f"{icon} **{r['TABLE_NAME']}** - {int(r['HOURS_BEHIND'])} hours behind "
              f"(expected <= {int(r['EXPECTED_INTERVAL_HOURS'])}h) - **{str(r['FRESHNESS_STATUS']).upper()}**")
 st.bar_chart(freshness.set_index("TABLE_NAME")[["HOURS_BEHIND", "EXPECTED_INTERVAL_HOURS"]])
-st.dataframe(freshness, use_container_width=True, hide_index=True)
+st.dataframe(freshness, width="stretch", hide_index=True)
 st.divider()
 
 # ---------- Question 3 ----------
@@ -137,7 +137,7 @@ def verdict(r):
 q3["VERDICT"] = q3.apply(verdict, axis=1)
 q3["CONCENTRATION"] = q3["CONCENTRATION"].apply(lambda v: "-" if pd.isna(v) else f"{v:.3f}")
 st.bar_chart(q3.set_index("RULE_NAME")["TOTAL_FAILED"])
-st.dataframe(q3, use_container_width=True, hide_index=True)
+st.dataframe(q3, width="stretch", hide_index=True)
 st.caption("Concentration = worst single load / total failures. 1.000 means every failure came from one load.")
 
 st.divider()
