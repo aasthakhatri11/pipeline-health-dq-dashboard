@@ -1,0 +1,3 @@
+table_name,check_ts,last_business_ts,hours_behind,expected_interval_hours,freshness_status
+orders,2025-06-16,2025-06-16,0,24,pass
+customers,2025-06-16,2025-06-10,144,24,fail
