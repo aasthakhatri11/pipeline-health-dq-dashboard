@@ -4,7 +4,7 @@ Capstone Topic #30 - Databricks & Snowflake (Excelr x KIIT). A data-quality "wat
 
 **Live dashboard:** https://pipeline-health-dq-dashboard-g5htxaegzm5kjvukxkgwcq.streamlit.app/
 
-![Dashboard](images/09_live_dashboard_full_page.png)
+  ![Dashboard demo](images/dashboard_demo.gif)
 
 ## What it does
 
