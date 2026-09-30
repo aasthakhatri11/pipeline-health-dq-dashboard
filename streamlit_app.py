@@ -81,7 +81,8 @@ st.divider()
 # ---------- Question 1 ----------
 st.subheader("1. Rows rejected per load, per rule, per day")
 st.caption("Row-scope rules count rejected rows. File-scope rules (R6, R7) count 1 when the whole file fails.")
-table = st.radio("Table", sorted(dq["TABLE_NAME"].unique()), horizontal=True)
+tables = sorted(dq["TABLE_NAME"].unique())
+table = st.radio("Table", tables, index=tables.index("orders") if "orders" in tables else 0, horizontal=True)
 sub = dq[dq["TABLE_NAME"] == table]
 tab_heat, tab_detail = st.tabs(["Heatmap: load x rule", "Detail table"])
 with tab_heat:
